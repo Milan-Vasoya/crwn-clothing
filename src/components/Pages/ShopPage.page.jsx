@@ -1,15 +1,21 @@
 import React,{useState} from "react";
 import shopData from "./shop/shopdata";
+import CollectioPreview from "../colloction-Preview/collection-preview";
 
 const ShopPage =()=>{
 
    
-      const [collection, setCollection]=useState(shopData);
+      const [collections,]=useState(shopData);
       
 
     return(
         <div>
-        hii this is shop page
+        {
+            collections.map((collection)=>
+            <CollectioPreview  key={collection.id} title={collection.title} items={collection.items} />
+            )
+        }
+        
         </div>
     );
 
