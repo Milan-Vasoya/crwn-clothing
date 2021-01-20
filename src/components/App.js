@@ -1,13 +1,14 @@
-import React from 'react';
-import HomePage from './homePage/Homepage.component';
-import '../styles/styles.scss';
+import React from "react";
+import HomePage from "./Pages/Homepage.component";
+import "../styles/styles.scss";
 
-const App=()=> {
+
+const App = () => {
   return (
     <div>
-     <HomePage />
+      <HomePage />
     </div>
   );
-}
+};
 
-export {App as default};
+export { App as default };
