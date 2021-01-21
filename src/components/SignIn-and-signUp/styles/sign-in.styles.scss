@@ -1,8 +1,15 @@
-.sign-in{
-    width: 30vw;
+.sign-in {
+    width: 380px;
     display: flex;
     flex-direction: column;
-.title{
-    margin: 10px 0;
-}
-}
+  
+    .title {
+      margin: 10px 0;
+    }
+  
+    .buttons-div {
+      display: flex;
+      justify-content: space-between;
+     
+    }
+  }

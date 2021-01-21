@@ -18,9 +18,13 @@
       align-items: center;
       justify-content: flex-end;
   
+      div{
+        cursor: pointer;
+      }
       .option {
         padding: 10px 15px;
      font-size: 21px;
+      
       }
     }
   }
