@@ -7,19 +7,28 @@ import Contect from "../Trash/contact";
 import SignIn from "../Pages/SignIn-and-SingUp-page";
 import PageNotFound from "../PageNotFound/PageNotFound.page";
 import { auth } from "../../firebase/firebase.utills";
+import { Adduser } from "../..//firebase/firbaseAction";
 
 const AppRouter = () => {
-  const [user, setUser] = useState({});
+  const [userob, setUserob] = useState({});
 
   useEffect(() => {
-    auth.onAuthStateChanged((guser) => {
-      setUser(guser);
+    auth.onAuthStateChanged((user) => {
+      if(user){
+        Adduser(user);
+        setUserob({
+          id:user.uid,
+          ...user
+        })
+      }else{
+        setUserob(user);
+      }
     });
   }, []);
-  console.log(user);
+  // console.log(userob);
   return (
     <div>
-      <Header user={user}/>
+      <Header user={userob}/>
       <Switch>
         <Route exact path="/" component={App} />
         <Route path="/shop" component={ShopPage} />
