@@ -4,7 +4,7 @@ import App from "../App";
 import Header from "../header.component/header.component";
 import ShopPage from "../Pages/ShopPage.page";
 import Contect from "../Trash/contact";
-import SignIn from "../Trash/singIn";
+import SignIn from "../Pages/SignIn-and-SingUp-page";
 import PageNotFound from "../PageNotFound/PageNotFound.page";
 
 const AppRouter = () => (
