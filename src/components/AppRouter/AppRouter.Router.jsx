@@ -6,7 +6,7 @@ import ShopPage from "../Pages/ShopPage.page";
 import Contect from "../Trash/contact";
 import SignIn from "../Pages/SignIn-and-SingUp-page";
 import PageNotFound from "../PageNotFound/PageNotFound.page";
-import PrivateRoute from "./PrivateRoute";
+// import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRouter";
 import { auth } from "../../firebase/firebase.utills";
 import { Adduser } from "../../firebase/firbaseAction";
@@ -39,9 +39,9 @@ class AppRouter extends React.Component {
       <BrowserRouter>
         <Header />
         <Switch>
-          <PrivateRoute exact path="/" component={App} />
-          <PrivateRoute path="/shop" component={ShopPage} />
-          <PrivateRoute path="/contact" component={Contect} />
+          <Route exact path="/" component={App} />
+          <Route path="/shop" component={ShopPage} />
+          <Route path="/contact" component={Contect} />
           <PublicRoute path="/signIn" component={SignIn} />
           <Route component={PageNotFound} />
         </Switch>
