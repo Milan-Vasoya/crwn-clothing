@@ -10,7 +10,7 @@ import PageNotFound from "../PageNotFound/PageNotFound.page";
 import PublicRoute from "./PublicRouter";
 import { auth } from "../../firebase/firebase.utills";
 import { Adduser } from "../../firebase/firbaseAction";
-
+import CheckOut from "../checkout/CheckOut.componet";
 import { setCurrentUser } from "../../redux/user/user.action";
 import { connect } from "react-redux";
 
@@ -42,6 +42,7 @@ class AppRouter extends React.Component {
           <Route exact path="/" component={App} />
           <Route path="/shop" component={ShopPage} />
           <Route path="/contact" component={Contect} />
+          <Route path="/checkout" component={CheckOut} />
           <PublicRoute path="/signIn" component={SignIn} />
           <Route component={PageNotFound} />
         </Switch>
