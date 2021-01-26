@@ -4,7 +4,7 @@ import { Route } from "react-router-dom";
 import CategoryPage from "./collection/collectio.page";
 
 const ShopPage = ({ match }) => {
-  console.log('shoppage',match)
+
   return (
     <div>
       <Route exact={true} path={`${match.path}`} component={CollectionOverview} />
