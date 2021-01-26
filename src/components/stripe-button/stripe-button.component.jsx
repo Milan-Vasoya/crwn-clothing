@@ -14,7 +14,7 @@ const StripCheckOutButton=({price})=>{
         image='https://sendeyo.com/up/d/f3eb2117da'
         currency='INR'
         description={`Your total is ₹${price}`}
-        amount={price*100}
+        amount={price}
         panelLabel='pay now !'
         token={onsTokenSubmission}
        stripeKey={publishableKey}
