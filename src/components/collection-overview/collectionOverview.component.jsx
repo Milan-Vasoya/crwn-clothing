@@ -12,6 +12,7 @@ const CollectionOverview = ({ collections }) => {
       {collections.map((collection) => (
         <CollectioPreview
           key={collection.id}
+          routeName={collection.routeName}
           title={collection.title}
           items={collection.items}
         />

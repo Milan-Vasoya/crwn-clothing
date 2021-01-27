@@ -1,7 +1,7 @@
 
 
 const INTITIAL_STATE={
-collections: {}
+collections: null
 }
 const shopReducer=(state=INTITIAL_STATE, action)=>{
     switch (action.type) {
