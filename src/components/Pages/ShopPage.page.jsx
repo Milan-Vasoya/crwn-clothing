@@ -1,40 +1,29 @@
 import React from "react";
-import CollectionOverview from "../collection-overview/collectionOverview.component";
 import { Route } from "react-router-dom";
-import CollectionPage from "./collection/collectio.page";
 import { connect } from "react-redux";
 import { fetchCollectionsAsync } from "../../redux/shop/shop.action";
-import withSpinner from "../with-Spinner/withSpinner.component";
-import {  createStructuredSelector} from 'reselect';
-import { selectIsCollectionFetching } from "../../redux/shop/shop.selector";
-
-const CollectionOverviewWithSpinner = withSpinner(CollectionOverview);
-const CollectionPageWithSpinner = withSpinner(CollectionPage);
+import CollectionOverviewContainer from "../collection-overview/collection-overview.container";
+import CollectionPageContainer from "../Pages/collection/CollectionPage.container";
 
 class ShopPage extends React.Component {
-  
   componentDidMount() {
-    const {fetchCollectionsAsync} = this.props;
+    const { fetchCollectionsAsync } = this.props;
     fetchCollectionsAsync();
   }
 
   render() {
-    const { match, isCollectionFetching } = this.props;
-    
+    const { match } = this.props;
+
     return (
       <div>
         <Route
           exact={true}
           path={`${match.path}`}
-          render={(props) => (
-            <CollectionOverviewWithSpinner isLoading={isCollectionFetching} {...props} />
-          )}
+          component={CollectionOverviewContainer}
         />
         <Route
           path={`${match.path}/:collectionId`}
-          render={(props) => (
-            <CollectionPageWithSpinner isLoading={isCollectionFetching} {...props} />
-          )}
+          component={CollectionPageContainer}
         />
       </div>
     );
@@ -42,10 +31,7 @@ class ShopPage extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCollectionsAsync:()=>dispatch(fetchCollectionsAsync())
+  fetchCollectionsAsync: () => dispatch(fetchCollectionsAsync()),
 });
 
-const mapStateToProps = createStructuredSelector({
-  isCollectionFetching:selectIsCollectionFetching
-})
-export default connect(mapStateToProps, mapDispatchToProps)(ShopPage);
+export default connect(undefined, mapDispatchToProps)(ShopPage);
