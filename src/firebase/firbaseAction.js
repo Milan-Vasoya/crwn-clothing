@@ -21,3 +21,14 @@ return database.ref(`user/${user.uid}`).set({
     createdAt:createdAt
 });       
 }
+
+export const AddCollections=(objs)=>{
+
+    objs.forEach((obj)=> database.ref(`collections/${obj.title.toLowerCase()}`).set(obj));
+
+    
+}
+
+export const GetCollections =()=>{
+return database.ref(`collections`).once('value').then((snapshot)=> snapshot.val())
+}

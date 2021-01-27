@@ -13,7 +13,6 @@ import { Adduser } from "../../firebase/firbaseAction";
 import CheckOut from "../checkout/CheckOut.componet";
 import { setCurrentUser } from "../../redux/user/user.action";
 import { connect } from "react-redux";
-
 class AppRouter extends React.Component {
   componentDidMount() {
     const { setCurrentUser } = this.props;
@@ -28,6 +27,12 @@ class AppRouter extends React.Component {
         setCurrentUser(user);
       }
     });
+    
+    // AddCollections(  Collections.map(({title,routeName,items})=>({title,routeName,items})));
+      
+
+
+    
   }
 
   componentWillUnmount() {
@@ -55,4 +60,7 @@ const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(dispatch(setCurrentUser(user))),
 });
 
+// const mapStateToprops = createStructuredSelector({
+//   Collections: selectCollectionForPreview,
+// });
 export default connect(undefined, mapDispatchToProps)(AppRouter);

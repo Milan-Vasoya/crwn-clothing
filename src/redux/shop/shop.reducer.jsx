@@ -1,11 +1,16 @@
-import SHOP_DATA from "./shopdata";
+
 
 const INTITIAL_STATE={
-collections: SHOP_DATA
+collections: {}
 }
 const shopReducer=(state=INTITIAL_STATE, action)=>{
     switch (action.type) {
-    
+        case 'SET_COLLECTIONS':
+            return{
+                ...state,
+               collections:{ ...action.collections}
+
+            };
         default:
             return state;
     }
