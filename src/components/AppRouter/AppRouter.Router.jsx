@@ -8,35 +8,16 @@ import SignIn from "../Pages/SignIn-and-SingUp-page";
 import PageNotFound from "../PageNotFound/PageNotFound.page";
 // import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRouter";
-import { auth } from "../../firebase/firebase.utills";
-import { Adduser } from "../../firebase/firbaseAction";
+
 import CheckOut from "../checkout/CheckOut.componet";
-import { setCurrentUser } from "../../redux/user/user.action";
+import { checkUserSession } from "../../redux/user/user.action";
 import { connect } from "react-redux";
+
+
 class AppRouter extends React.Component {
   componentDidMount() {
-    const { setCurrentUser } = this.props;
-
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      if (user) {
-        console.log("login");
-        Adduser(user);
-        setCurrentUser(user.uid);
-      } else {
-        console.log("logout");
-        setCurrentUser(user);
-      }
-    });
-    
-    // AddCollections(  Collections.map(({title,routeName,items})=>({title,routeName,items})));
-      
-
-
-    
-  }
-
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
+    const { checkUserSession } = this.props;
+    checkUserSession();
   }
 
   render() {
@@ -57,7 +38,7 @@ class AppRouter extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(dispatch(setCurrentUser(user))),
+  checkUserSession: (user) => dispatch(checkUserSession(user)),
 });
 
 // const mapStateToprops = createStructuredSelector({
