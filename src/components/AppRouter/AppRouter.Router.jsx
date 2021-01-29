@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import App from "../App";
 import Header from "../header.component/header.component";
@@ -14,13 +14,13 @@ import { checkUserSession } from "../../redux/user/user.action";
 import { connect } from "react-redux";
 
 
-class AppRouter extends React.Component {
-  componentDidMount() {
-    const { checkUserSession } = this.props;
-    checkUserSession();
-  }
+const AppRouter =({ checkUserSession })=>{
 
-  render() {
+useEffect(()=> {
+    checkUserSession();
+  },[checkUserSession]
+)
+
     return (
       <BrowserRouter>
         <Header />
@@ -35,7 +35,7 @@ class AppRouter extends React.Component {
       </BrowserRouter>
     );
   }
-}
+
 
 const mapDispatchToProps = (dispatch) => ({
   checkUserSession: (user) => dispatch(checkUserSession(user)),
