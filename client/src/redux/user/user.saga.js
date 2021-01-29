@@ -1,4 +1,4 @@
-import { takeLatest, put, all, call } from "redux-saga/effects";
+import { ,takeEvery, put, all, call } from "redux-saga/effects";
 import UserActionTypes from "./user.types";
 import {
   GoogleAuthProvider,
@@ -26,7 +26,7 @@ export function* signInWithGoogle() {
 }
 
 export function* onGoogleSignInStart() {
-  yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
+  yield takeEvery(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
 }
 
 export function* signInWithEmail({ email, password }) {
