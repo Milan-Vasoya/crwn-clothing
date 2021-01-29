@@ -1,14 +1,5 @@
 import database from "./firebase.utills";
 
-export const Adduser = (user) => {
-  const createdAt = Date.now();
-  return database.ref(`users/${user.uid}`).set({
-    name: user.displayName,
-    email: user.email,
-    createdAt: createdAt,
-  });
-};
-
 export const AddOrGetUserToDb = (user) => {
   // console.log('displaname',displayName,'user',user)
   const userRef = database
