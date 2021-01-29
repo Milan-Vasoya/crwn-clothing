@@ -29,6 +29,11 @@ const cartReducer = (state = IntialState, action)=>{
               ...state,
               cartItems:removeItemFromCart(state.cartItems,action.id)
             }
+            case CartActionTypes.CLEAR_CART:
+              return{
+                ...state,
+                cartItems:[]
+              }
             default:
         return state;
     }

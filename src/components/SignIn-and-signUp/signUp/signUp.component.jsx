@@ -1,8 +1,9 @@
 import React from "react";
 import FormInput from "../Form-input/form-input.component";
-import { CreateUser } from "../../../firebase/firbaseAction";
+import { signUpStart } from "../../../redux/user/user.action";
 import "../styles/singup.styles.scss";
-import { auth } from "../../../firebase/firebase.utills";
+
+import { connect } from "react-redux";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -17,34 +18,18 @@ class SignUp extends React.Component {
     };
   }
 
-  formSubmit = async (e) => {
+  formSubmit = (e) => {
     e.preventDefault();
 
-    const { email, password, confirmPassword } = this.state;
-
+    const { email, password, confirmPassword, displayName } = this.state;
+    const { signUpStart } = this.props;
     if (password !== confirmPassword) {
       const error = "Password and Confirm-password Doesn't Match";
-      this.setState(() => ({ error }));
-    } else {
+      this.setState({ error });
+      return;
     }
-
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-      const { displayName } = this.state;
-      await CreateUser(user, { displayName });
-
-      this.setState({
-        displayName: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
-    } catch (error) {
-      console.error(error);
-    }
+    signUpStart(email, password, displayName);
+    
   };
 
   handleChange = (e) => {
@@ -95,13 +80,16 @@ class SignUp extends React.Component {
             required
           />
 
-          <button type="submit" value="submit" className="black-button">
-            Sign Up
-          </button>
+          <button className="black-button">Sign Up</button>
         </form>
       </div>
     );
   }
 }
 
-export default SignUp;
+const mapDispatchToProps = (dispatch) => ({
+  signUpStart: (email, password, displayName) =>
+    dispatch(signUpStart(email, password, displayName)),
+});
+
+export default connect(undefined, mapDispatchToProps)(SignUp);

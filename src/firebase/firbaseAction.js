@@ -10,6 +10,7 @@ export const Adduser = (user) => {
 };
 
 export const AddOrGetUserToDb = (user) => {
+  // console.log('displaname',displayName,'user',user)
   const userRef = database
     .ref(`users/${user.uid}`)
     .once("value")
@@ -26,14 +27,18 @@ export const AddOrGetUserToDb = (user) => {
   return userRef;
 };
 
-export const CreateUser = (user, { displayName }) => {
+export const CreateUser = (user, { displayName: { displayName } }) => {
   const createdAt = Date.now();
 
-  return database.ref(`users/${user.uid}`).set({
-    email: user.email,
-    name: displayName,
-    createdAt: createdAt,
-  });
+  return database
+    .ref(`users/${user.uid}`)
+    .set({
+      email: user.email,
+      name: displayName,
+      createdAt: createdAt,
+    })
+    .then(() => database.ref(`users/${user.uid}`).once("value"))
+    .then((user) => user.val());
 };
 
 export const AddCollections = (objs) => {
@@ -48,4 +53,3 @@ export const GetCollections = () => {
     .once("value")
     .then((snapshot) => snapshot.val());
 };
-
