@@ -1,4 +1,4 @@
-import { ,takeEvery, put, all, call } from "redux-saga/effects";
+import { takeLatest ,takeEvery, put, all, call } from "redux-saga/effects";
 import UserActionTypes from "./user.types";
 import {
   GoogleAuthProvider,
