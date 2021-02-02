@@ -10,7 +10,7 @@ export const AddOrGetUserToDb = (user) => {
   
 
   if (!userRef.exsits) {
-    console.log('run')
+
     const createdAt = Date.now();
     return database.ref(`users/${user.uid}`).set({
       name: user.displayName,
