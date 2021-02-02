@@ -11,7 +11,18 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
       grid-gap: 10px;
+
+      @media (max-width:800px) {
+        grid-template-columns:1fr 1fr;
+        margin: auto;
+      }
   
+      
+      @media (max-width:600px) {
+        grid-template-columns:1fr;
+        margin: auto;
+      }
+
       & .collection-item {
         margin-bottom: 30px;
       }

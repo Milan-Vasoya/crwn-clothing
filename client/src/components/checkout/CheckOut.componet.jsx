@@ -13,17 +13,17 @@ const CheckOut = ({ cartItems, total }) => {
   return (
     <div className="checkout-page">
       <div className="checkout-header">
-        <div className="header-block">
+        <div className="header-block mobile-header-block">
           <span>Product</span>
         </div>
 
-        <div className="header-block">
+        <div className="header-block mobile-header-block">
           <span>description</span>
         </div>
 
         <div className="header-block">
-          <span>quntity</span>
-        </div>
+        <span>quantity</span>
+      </div>
 
         <div className="header-block">
           <span>price</span>
@@ -37,10 +37,10 @@ const CheckOut = ({ cartItems, total }) => {
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
       <div className="total">TOTAL: ₹{total}</div>
-      <div className='test-warning'>
-      * please use this creditcard information  for any payments (visa card)
-      <br />
-      4242 4242 4242 4242 - EXP: 01/22 - CVV: 123
+      <div className="test-warning">
+        * please use this creditcard information for any payments (visa card)
+        <br />
+        4242 4242 4242 4242 - EXP: 01/22 - CVV: 123
       </div>
       <StripeButton price={total} />
     </div>

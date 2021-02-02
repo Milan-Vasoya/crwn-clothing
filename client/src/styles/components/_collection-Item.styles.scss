@@ -6,6 +6,34 @@
   align-items   : center;
   position      : relative;
 
+  @media (max-width:800px) {
+    width: 45vw;
+
+    &:hover{
+      .image{
+        opacity: unset;
+      }
+      .uniqe{
+        display: flex;
+        opacity: 0.85;
+      }
+    }
+  }
+
+  @media (max-width:600px) {
+    width: 90vw;
+
+    &:hover{
+      .image{
+        opacity: unset;
+      }
+      .uniqe{
+        display: flex;
+        opacity: 0.85;
+      }
+    }
+  }
+
   .image {
     width              : 100%;
     height             : 95%;
@@ -20,7 +48,15 @@
     position: absolute;
     top     : 255px;
     display: none;
+
+    @media (max-width:800px) {
+      display: block;
+      opacity: 0.9;
+      min-width: unset;
+      padding: 0 10px;
+    }
   }
+
   &:hover{
     .image{
       opacity: 0.8;

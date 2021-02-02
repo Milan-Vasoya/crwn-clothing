@@ -12,7 +12,7 @@ import PublicRoute from "./PublicRouter";
 import CheckOut from "../checkout/CheckOut.componet";
 import { checkUserSession } from "../../redux/user/user.action";
 import { connect } from "react-redux";
-
+import {GlobalStyles} from '../../styles/GlobalStyles/global.styles'
 
 const AppRouter =({ checkUserSession })=>{
 
@@ -23,6 +23,7 @@ useEffect(()=> {
 
     return (
       <BrowserRouter>
+      <GlobalStyles />
         <Header />
         <Switch>
           <Route exact path="/" component={App} />

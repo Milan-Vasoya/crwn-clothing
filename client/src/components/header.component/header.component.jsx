@@ -36,7 +36,7 @@ const Header = ({ user, cartVisibility,signOut }) => {
             Sign Out
           </OptionLink>
         ) : (
-          <OptionLink to="/signIn">Sing in</OptionLink>
+          <OptionLink to="/signIn">Sign in</OptionLink>
         )}
         <CartIcon />
       </OptionsContainer>
