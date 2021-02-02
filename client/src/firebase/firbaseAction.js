@@ -1,19 +1,23 @@
 import database from "./firebase.utills";
 
 export const AddOrGetUserToDb = (user) => {
-  // console.log('displaname',displayName,'user',user)
+  console.log("displaname", "user", user);
   const userRef = database
     .ref(`users/${user.uid}`)
     .once("value")
     .then((snapshot) => snapshot.val());
 
-  if (!userRef) {
+  
+
+  if (!userRef.exsits) {
+    console.log('run')
     const createdAt = Date.now();
     return database.ref(`users/${user.uid}`).set({
       name: user.displayName,
       email: user.email,
       createdAt: createdAt,
-    });
+    }).then(() => database.ref(`users/${user.uid}`).once("value"))
+    .then((user) => user.val());
   }
   return userRef;
 };

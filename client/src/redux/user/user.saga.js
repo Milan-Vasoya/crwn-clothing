@@ -1,9 +1,10 @@
-import { takeLatest ,takeEvery, put, all, call } from "redux-saga/effects";
+import { takeLatest, takeEvery, put, all, call } from "redux-saga/effects";
 import UserActionTypes from "./user.types";
 import {
   GoogleAuthProvider,
   getCurrentUser,
   auth,
+  signInWithGoogleAuth
 } from "../../firebase/firebase.utills";
 import { AddOrGetUserToDb, CreateUser } from "../../firebase/firbaseAction";
 import {
@@ -17,8 +18,9 @@ import {
 
 export function* signInWithGoogle() {
   try {
-    const { user } = yield auth.signInWithPopup(GoogleAuthProvider);
+    const {user} = yield signInWithGoogleAuth();
     const userRef = yield AddOrGetUserToDb(user);
+    console.log('result',userRef)
     yield put(signInSuccess({ id: user.uid, ...userRef }));
   } catch (e) {
     yield put(signInFailure(e.message));
