@@ -9,11 +9,14 @@ import { checkUserSession } from "../../redux/user/user.action";
 import { connect } from "react-redux";
 import { GlobalStyles } from "../../styles/GlobalStyles/global.styles";
 import ErrorBoundary from "../error-boundary/error-boundary.component";
+import "../../styles/styles.scss";
+
 
 const App = lazy(() => import("../App"));
 const ShopPage = lazy(() => import("../Pages/ShopPage.page"));
 const Contact = lazy(() => import("../Trash/contact"));
 const SignIn = lazy(() => import("../Pages/SignIn-and-SingUp-page"));
+
 
 const CheckOut = lazy(() => import("../checkout/CheckOut.componet"));
 
