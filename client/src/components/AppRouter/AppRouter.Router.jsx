@@ -1,42 +1,46 @@
-import React, { useEffect } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import App from "../App";
 import Header from "../header.component/header.component";
-import ShopPage from "../Pages/ShopPage.page";
-import Contect from "../Trash/contact";
-import SignIn from "../Pages/SignIn-and-SingUp-page";
 import PageNotFound from "../PageNotFound/PageNotFound.page";
 // import PrivateRoute from "./PrivateRoute";
+import Spinner from "../spinner/withSpinner.component";
 import PublicRoute from "./PublicRouter";
-
-import CheckOut from "../checkout/CheckOut.componet";
 import { checkUserSession } from "../../redux/user/user.action";
 import { connect } from "react-redux";
-import {GlobalStyles} from '../../styles/GlobalStyles/global.styles'
+import { GlobalStyles } from "../../styles/GlobalStyles/global.styles";
+import ErrorBoundary from "../error-boundary/error-boundary.component";
 
-const AppRouter =({ checkUserSession })=>{
+const App = lazy(() => import("../App"));
+const ShopPage = lazy(() => import("../Pages/ShopPage.page"));
+const Contact = lazy(() => import("../Trash/contact"));
+const SignIn = lazy(() => import("../Pages/SignIn-and-SingUp-page"));
 
-useEffect(()=> {
+const CheckOut = lazy(() => import("../checkout/CheckOut.componet"));
+
+const AppRouter = ({ checkUserSession }) => {
+  useEffect(() => {
     checkUserSession();
-  },[checkUserSession]
-)
+  }, [checkUserSession]);
 
-    return (
-      <BrowserRouter>
-      <GlobalStyles />
+  return (
+    <BrowserRouter>
+      <ErrorBoundary>
+        <GlobalStyles />
         <Header />
         <Switch>
-          <Route exact path="/" component={App} />
-          <Route path="/shop" component={ShopPage} />
-          <Route path="/contact" component={Contect} />
-          <Route path="/checkout" component={CheckOut} />
-          <PublicRoute path="/signIn" component={SignIn} />
+          <Suspense fallback={<Spinner />}>
+            <Route exact path="/" component={App} />
+            <Route path="/shop" component={ShopPage} />
+            <Route path="/contact" component={Contact} />
+            <Route path="/checkout" component={CheckOut} />
+            <PublicRoute path="/signIn" component={SignIn} />
+          </Suspense>
           <Route component={PageNotFound} />
         </Switch>
-      </BrowserRouter>
-    );
-  }
-
+      </ErrorBoundary>
+    </BrowserRouter>
+  );
+};
 
 const mapDispatchToProps = (dispatch) => ({
   checkUserSession: (user) => dispatch(checkUserSession(user)),

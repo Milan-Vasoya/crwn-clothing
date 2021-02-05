@@ -19,6 +19,7 @@ import {
 import { signOutStart } from "../../redux/user/user.action";
 
 const Header = ({ user, cartVisibility,signOut }) => {
+
   
   return (
     <HeaderContainer>
